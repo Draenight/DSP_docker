@@ -1,8 +1,8 @@
 services:
   dsp:
-    image: dsp_hosting
-    build:
-      context: .
+    image: ghcr.io/fox4fun31/dsp_hosting:latest
+    # build:
+    #   context: .
     container_name: dsp_nebula_server
 
     ports:
