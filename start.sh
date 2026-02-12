@@ -81,6 +81,14 @@ download_and_unzip() {
   rm -f "$tmp"
 }
 
+# NEW: truthy helper for env flags
+is_truthy() {
+  case "${1,,}" in
+    1|true|yes|y|on) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
 log "wine OK: $(wine --version || true)"
 log "Initializing Wine prefix..."
 wineboot -u >/dev/null 2>&1 || true
@@ -130,12 +138,17 @@ else
 fi
 
 # --- Install Nebula (default URL, override via env) ---
-if [[ ! -d "$STEAM_INSTALL_DIR/BepInEx/plugins/nebula-NebulaMultiplayerMod" ]]; then
-  log "Installing Nebula from: $NEBULA_URL"
+# NEW: allow forcing reinstall even if already present
+NEBULA_FORCE="${NEBULA_FORCE:-0}"
+NEBULA_DIR="$STEAM_INSTALL_DIR/BepInEx/plugins/nebula-NebulaMultiplayerMod"
+
+if is_truthy "$NEBULA_FORCE" || [[ ! -d "$NEBULA_DIR" ]]; then
+  log "Installing Nebula from: $NEBULA_URL (force=${NEBULA_FORCE})"
   mkdir -p "$STEAM_INSTALL_DIR/BepInEx/plugins"
+  rm -rf "$NEBULA_DIR" || true
   download_and_unzip "$NEBULA_URL" "$STEAM_INSTALL_DIR/BepInEx/plugins"
 else
-  log "Nebula already present -> skipping"
+  log "Nebula already present -> skipping (set NEBULA_FORCE=1 to reinstall)"
 fi
 
 # Logs
