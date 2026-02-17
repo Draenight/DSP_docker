@@ -86,6 +86,11 @@ ENV \
   WINEDEBUG="-all" \
   BEPINEX_URL="https://github.com/BepInEx/BepInEx/releases/download/v5.4.23.4/BepInEx_win_x64_5.4.23.4.zip" \
   NEBULA_URL="https://github.com/NebulaModTeam/nebula/releases/download/v0.9.19/Nebula_0.9.19.zip" \
+  NEBULA_ASSIST_URL="https://thunderstore.io/package/download/starfi5h/NebulaCompatibilityAssist/0.5.1/" \
+  ERROR_ANAL_URL="https://thunderstore.io/package/download/starfi5h/ErrorAnalyzer/1.3.3/" \
+  BULLET_TIME_URL="https://thunderstore.io/package/download/starfi5h/BulletTime/1.5.13/" \
+  ILLINE_URL="https://thunderstore.io/package/download/PhantomGamers/IlLine/1.0.0/" \
+  DSP_MODSAVE_URL="https://thunderstore.io/package/download/CommonAPI/DSPModSave/1.2.2/" \
   GAME_ARGS="-batchmode -nographics -nebula-server"
 
 # Startscript

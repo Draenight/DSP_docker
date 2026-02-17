@@ -139,17 +139,28 @@ fi
 
 # --- Install Nebula (default URL, override via env) ---
 # NEW: allow forcing reinstall even if already present
-NEBULA_FORCE="${NEBULA_FORCE:-0}"
-NEBULA_DIR="$STEAM_INSTALL_DIR/BepInEx/plugins/nebula-NebulaMultiplayerMod"
+MODS_FORCE="${MODS_FORCE:-0}"
+PLUGIN_DIR="$STEAM_INSTALL_DIR/BepInEx/plugins/nebula-NebulaMultiplayerMod"
 
-if is_truthy "$NEBULA_FORCE" || [[ ! -d "$NEBULA_DIR" ]]; then
-  log "Installing Nebula from: $NEBULA_URL (force=${NEBULA_FORCE})"
+if is_truthy "$MODS_FORCE" || [[ ! -d "$PLUGIN_DIR" ]]; then
+  log "Installing Mods from: Compose urls (force=${MODS_FORCE})"
+  rm -rf "$PLUGIN_DIR" || true
   mkdir -p "$STEAM_INSTALL_DIR/BepInEx/plugins"
-  rm -rf "$NEBULA_DIR" || true
   download_and_unzip "$NEBULA_URL" "$STEAM_INSTALL_DIR/BepInEx/plugins"
+  download_and_unzip "$NEBULA_ASSIST_URL" "$STEAM_INSTALL_DIR/BepInEx/plugins"
+  download_and_unzip "$ERROR_ANAL_URL" "$STEAM_INSTALL_DIR/BepInEx/plugins"
+  download_and_unzip "$BULLET_TIME_URL" "$STEAM_INSTALL_DIR/BepInEx/plugins"
+  download_and_unzip "$ILLINE_URL" "$STEAM_INSTALL_DIR/BepInEx/plugins"
+  download_and_unzip "$DSP_MODSAVE_URL" "$STEAM_INSTALL_DIR/BepInEx/plugins"
 else
-  log "Nebula already present -> skipping (set NEBULA_FORCE=1 to reinstall)"
+  log "Mods already present -> skipping (set MODS_FORCE=1 to reinstall)"
 fi
+
+# --- Create steamappid file ---
+if [[ ! -f "$STEAM_INSTALL_DIR/steam_appid.txt" ]]; then
+  log "Creating steam_appid file"
+  rm -rf "$STEAM_INSTALL_DIR/steam_appid.txt" || true
+  echo "1366540" > "$STEAM_INSTALL_DIR/steam_appid.txt"
 
 # Logs
 mkdir -p "$LOG_DIR"
