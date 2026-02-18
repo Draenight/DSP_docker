@@ -44,8 +44,6 @@ STEAMCMD_BIN="/usr/local/bin/steamcmd"
 FORCE_UPDATE="${FORCE_UPDATE:-0}"
 
 # --- DEFAULT URLs (override via docker-compose env if you want) ---
-BEPINEX_URL="${BEPINEX_URL:-https://github.com/BepInEx/BepInEx/releases/download/v5.4.23.4/BepInEx_win_x64_5.4.23.4.zip}"
-NEBULA_URL="${NEBULA_URL:-https://github.com/NebulaModTeam/nebula/releases/download/v0.9.19/Nebula_0.9.19.zip}"
 EXTRA_ZIP_URL="${EXTRA_ZIP_URL:-}"
 EXTRA_FORCE="${EXTRA_FORCE:-0}"
 
