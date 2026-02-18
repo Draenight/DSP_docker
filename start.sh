@@ -161,6 +161,9 @@ if [[ ! -f "$STEAM_INSTALL_DIR/steam_appid.txt" ]]; then
   log "Creating steam_appid file"
   rm -rf "$STEAM_INSTALL_DIR/steam_appid.txt" || true
   echo "1366540" > "$STEAM_INSTALL_DIR/steam_appid.txt"
+else
+  log "steam_appid file already exist -> skipping"
+fi
 
 # Logs
 mkdir -p "$LOG_DIR"
