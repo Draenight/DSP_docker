@@ -1,6 +1,9 @@
 # DSP_docker
 A Docker image for a headless DSP multiplayer server with wine
 
+Command for bash error : sed $'s/\r$//' ./install.sh > ./install.Unix.sh on both sh script
+
+
 ## Note about the first start (one-time restart)
 On some systems the server **may not come up on the very first boot**.  
 This is a known quirk of running DSP headless under Wine/Xvfb: the initial Unity window / display initialization can fail once, and a restart fixes it.
